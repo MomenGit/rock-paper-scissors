@@ -1,52 +1,63 @@
-function getComputerChoice() {
-  //let choices = ["Rock", "Paper", "Scissors"];
-  //Return: [0]Rock, [1]Paper or [2]Scissors
-  return Math.floor(Math.random() * 3);
-}
+const imgs = [
+  "./assets/rock.jpg",
+  "./assets/paper.jpg",
+  "./assets/scissors.jpg",
+];
+let choices = ["r", "p", "s"];
+let playerWins = 0;
+let computerWins = 0;
+const playBtns = document.querySelectorAll("#btns-container .img-btn");
+let playerChoiceView = document.querySelector("#player .img-asset");
+let computerChoiceView = document.querySelector("#computer .img-asset");
 
-function getPlayerChoice() {
-  let choice = "";
-  choice = prompt("Pick: Rock, Paper, Scissors.");
-  console.log(choice.toLowerCase());
-  return choice.toLowerCase();
-}
+playBtns.forEach((e) => {
+  e.addEventListener("click", (ev) => {
+    playRound(e.id);
+    e.classList.add("playing");
+    setTimeout(() => {
+      e.classList.remove("playing");
+    }, 50);
+  });
+});
 
-function playRound(playerSelection, computerSelection) {
+function playRound(playerSelection) {
   let result = 0;
-  let choices = ["Rock", "Paper", "Scissors"];
-  let compChoice = choices[computerSelection];
-  let playerChoice;
+  let compChoiceIndex = getComputerChoice();
+  let compChoice = choices[compChoiceIndex];
 
+  console.log(compChoice);
+  console.log(playerSelection);
   switch (playerSelection) {
-    case "rock":
-      playerChoice = choices[0];
+    case "r":
       if (compChoice === choices[2]) result = 1;
       break;
-    case "paper":
-      playerChoice = choices[1];
+    case "p":
       if (compChoice === choices[0]) result = 1;
       break;
-    case "scissors":
-      playerChoice = choices[2];
+    case "s":
       if (compChoice === choices[1]) result = 1;
       break;
     default:
       result = 0;
       break;
   }
+  computerChoiceView.src = imgs[compChoiceIndex];
+  playerChoiceView.src = imgs[choices.indexOf(playerSelection)];
 
-  if (playerChoice === compChoice)
-    console.log(`Draw! It's ${playerChoice} ${compChoice}`);
-  else if (result) console.log(`You Win! ${playerChoice} beats ${compChoice}`);
-  else console.log(`You Lose! ${compChoice} beats ${playerChoice}`);
+  if (playerSelection == compChoice) {
+    console.log(`Draw! It's ${playerSelection} ${compChoice}`);
+  } else if (result) {
+    playerWins++;
+    document.getElementById("wins").innerHTML = playerWins;
+    console.log(`You Win! ${playerSelection} beats ${compChoice}`);
+  } else {
+    computerWins++;
+    document.getElementById("loses").innerHTML = computerWins;
+    console.log(`You Lose! ${compChoice} beats ${playerSelection}`);
+  }
   // your code here!
 }
 
-/* function game() {
-  for (let index = 0; index < 5; index++) {
-    console.log(`Round ${index + 1}`);
-    result = playRound(getPlayerChoice(), getComputerChoice());
-  }
+function getComputerChoice() {
+  return Math.floor(Math.random() * 3);
 }
-
-game(); */
