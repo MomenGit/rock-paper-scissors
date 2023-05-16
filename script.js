@@ -42,11 +42,11 @@ function playRound(playerSelection, computerSelection) {
   // your code here!
 }
 
-function game() {
+/* function game() {
   for (let index = 0; index < 5; index++) {
     console.log(`Round ${index + 1}`);
     result = playRound(getPlayerChoice(), getComputerChoice());
   }
 }
 
-game();
+game(); */
