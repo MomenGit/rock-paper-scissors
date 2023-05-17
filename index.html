@@ -9,20 +9,25 @@
     <title>Document</title>
   </head>
   <body>
-    <div id="score-board">
-      <div>Player: <span id="wins">0</span></div>
-      <div>Computer: <span id="loses">0</span></div>
-    </div>
-    <div id="play-area">
-      <div class="img-btn" id="player">
-        <img class="img-asset" src="" alt="" />
+    <header><h1>ROCK PAPER SCISSORS</h1></header>
+    <section class="main-area">
+      <div id="play-area">
+        <div class="played-container">
+          <div class="played-choice" id="player">
+            <img class="img-asset" src="" alt="" />
+          </div>
+          <h3>Player: <span id="wins">0</span></h3>
+        </div>
+        <strong id="play-text">VS</strong>
+        <div class="played-container">
+          <div class="played-choice" id="computer">
+            <img class="img-asset" src="" alt="" />
+          </div>
+          <h3>Computer: <span id="loses">0</span></h3>
+        </div>
       </div>
-      <strong>VS</strong>
-      <div class="img-btn" id="computer">
-        <img class="img-asset" src="" alt="" />
-      </div>
-    </div>
-    <div id="btns-container">
+    </section>
+    <section id="btns-container">
       <div class="img-btn" id="r">
         <img class="img-asset" src="./assets/rock.jpg" alt="" />
       </div>
@@ -32,6 +37,6 @@
       <div class="img-btn" id="s">
         <img class="img-asset" src="./assets/scissors.jpg" alt="" />
       </div>
-    </div>
+    </section>
   </body>
 </html>

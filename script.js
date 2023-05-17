@@ -25,8 +25,6 @@ function playRound(playerSelection) {
   let compChoiceIndex = getComputerChoice();
   let compChoice = choices[compChoiceIndex];
 
-  console.log(compChoice);
-  console.log(playerSelection);
   switch (playerSelection) {
     case "r":
       if (compChoice === choices[2]) result = 1;
@@ -55,7 +53,24 @@ function playRound(playerSelection) {
     document.getElementById("loses").innerHTML = computerWins;
     console.log(`You Lose! ${compChoice} beats ${playerSelection}`);
   }
-  // your code here!
+  if (playerWins === 5 || computerWins === 5) {
+    announceWinner(playerWins, computerWins);
+  }
+}
+
+function announceWinner(playerScore, compScore) {
+  let winText;
+
+  if (playerScore > compScore) winText = "You Win!";
+  else winText = "Computer Won It This Time, Try Again!";
+
+  if (confirm(winText + "\n" + "Try Again!")) playAgain(playerScore, compScore);
+}
+function playAgain(playerScore, compScore) {
+  playerWins = 0;
+  computerWins = 0;
+  document.getElementById("loses").innerHTML = 0;
+  document.getElementById("wins").innerHTML = 0;
 }
 
 function getComputerChoice() {
